@@ -10,22 +10,29 @@ export default class Cart {
     get items(): Buyable[] {
         return [...this._items]; 
     }
-
-    purchaseАmount(): number {
+    purchaseАmount():number{
+        return this._items.reduce((acc:number,result:Buyable)=>{
+            return result.price + acc
+        },0)
+    }
+    purchaseDiscount(discount: number): number{
+        return this.purchaseАmount() * (1 - discount / 100)
+    }
+    /*purchaseАmount(): number {
         let initial = 0;
         let amount = this._items.reduce((acc, currentValue) => {
             return acc + currentValue.price
         },initial)
         return amount
-    }
+    }*/
 
-    purchaseDiscount(discount: number): number {
+    /*purchaseDiscount(discount: number): number {
         let initial = 0;
         let amount = this._items.reduce((acc, currentValue) => {
             return acc + currentValue.price
         },initial)
         return amount * (1 - discount / 100)
-    }
+    }*/
 
     deleteItem(id : number){
         let deleteable = this._items.findIndex(item => item.id == id);
