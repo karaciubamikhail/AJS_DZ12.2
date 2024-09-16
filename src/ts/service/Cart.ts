@@ -35,7 +35,7 @@ export default class Cart {
     }*/
 
     deleteItem(id : number){
-        let deleteable = this._items.findIndex(item => item.id == id);
+        let deleteable = this._items.findIndex((item:Buyable) => item.id == id);
         this._items.splice(deleteable,1);
     }
 }
